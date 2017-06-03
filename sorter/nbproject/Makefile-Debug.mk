@@ -35,7 +35,9 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/main.o
+	${OBJECTDIR}/drawing/visualizer.o \
+	${OBJECTDIR}/main.o \
+	${OBJECTDIR}/sorting_algorithms/general_sorter.o
 
 
 # C Compiler Flags
@@ -62,10 +64,20 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sorter: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sorter ${OBJECTFILES} ${LDLIBSOPTIONS}
 
+${OBJECTDIR}/drawing/visualizer.o: drawing/visualizer.cpp
+	${MKDIR} -p ${OBJECTDIR}/drawing
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/drawing/visualizer.o drawing/visualizer.cpp
+
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+
+${OBJECTDIR}/sorting_algorithms/general_sorter.o: sorting_algorithms/general_sorter.cpp
+	${MKDIR} -p ${OBJECTDIR}/sorting_algorithms
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/sorting_algorithms/general_sorter.o sorting_algorithms/general_sorter.cpp
 
 # Subprojects
 .build-subprojects:
